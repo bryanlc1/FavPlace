@@ -1,5 +1,6 @@
 const express = require('express');
 require('dotenv').config();
+require('./src/config/mongooseCongif');
 
 const debug = require('debug')('favPlace');
 const morgan = require('morgan');
