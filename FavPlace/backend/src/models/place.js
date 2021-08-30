@@ -7,7 +7,11 @@ const placeSchema = Schema({
   comment: String,
   countri: String,
   city: String,
-  images: [String]
+  images: [{ type: String }],
+  user: [{
+    type: Schema.Types.ObjectId,
+    ref: 'User'
+  }]
 
 });
 module.exports = model('Place', placeSchema);

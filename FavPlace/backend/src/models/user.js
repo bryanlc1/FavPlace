@@ -5,6 +5,7 @@ const userSchema = Schema({
   lastName: String,
   email: String,
   password: String,
+  image: String,
   places: [{
     type: Schema.Types.ObjectId,
     ref: 'Place'
