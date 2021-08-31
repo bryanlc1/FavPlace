@@ -12,7 +12,6 @@ placeRoute
   .route('/:placeId')
   .put(placeControllers.updateOneById)
   .get(placeControllers.getOneById)
-  .patch(placeControllers.addOneElementbyId)
   .delete(placeControllers.deleteById);
 
 module.exports = placeRoute;

@@ -16,6 +16,7 @@ async function createOne({ body }, res) {
     res.status(201);
     res.send(newUser);
   } catch (error) {
+    res.status(500);
     res.send(error);
   }
 }
@@ -25,6 +26,7 @@ async function getOneById({ params: { userId } }, res) {
     const findOne = await User.findById(userId);
     res.send(findOne);
   } catch (error) {
+    res.status(500);
     res.send(error);
   }
 }
@@ -42,6 +44,7 @@ async function updateOneById({ params: { userId }, body }, res) {
     );
     res.send(newUser);
   } catch (error) {
+    res.status(500);
     res.send(error);
   }
 }
@@ -59,7 +62,7 @@ async function addOneElementbyId({ params: { userId }, body }, res) {
 
     res.send(newUser);
   } catch (error) {
-    res.send(304);
+    res.send(500);
     res.send(error);
   }
 }
