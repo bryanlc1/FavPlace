@@ -1,5 +1,5 @@
 const { Router } = require('express');
-
+const passport = require('passport');
 const userController = require('../controllers/userControllers');
 
 const userRouter = Router();
@@ -10,6 +10,7 @@ userRouter
 
 userRouter
   .route('/:userId')
+  .all(passport.authenticate('jwt', { session: false }))
   .get(userController.getOneById)
   .put(userController.updateOneById)
   .delete(userController.deleteById)
