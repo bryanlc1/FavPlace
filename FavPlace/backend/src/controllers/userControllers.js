@@ -31,6 +31,16 @@ async function getOneById({ params: { userId } }, res) {
   }
 }
 
+async function getOneForProfile({ params: { userId } }, res) {
+  try {
+    const findOne = await User.findById(userId).populate('places');
+    res.send({ name: findOne.name, lasName: findOne.lastName, places: findOne.places });
+  } catch (error) {
+    res.status(500);
+    res.send(error);
+  }
+}
+
 async function updateOneById({ params: { userId }, body }, res) {
   try {
     const newUser = await User.findByIdAndUpdate(
@@ -62,7 +72,7 @@ async function addOneElementbyId({ params: { userId }, body }, res) {
 
     res.send(newUser);
   } catch (error) {
-    res.send(500);
+    res.status(500);
     res.send(error);
   }
 }
@@ -83,5 +93,6 @@ module.exports = {
   updateOneById,
   addOneElementbyId,
   deleteById,
-  getOneById
+  getOneById,
+  getOneForProfile
 };

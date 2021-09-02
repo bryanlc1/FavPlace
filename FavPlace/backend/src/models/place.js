@@ -5,7 +5,7 @@ const placeSchema = Schema({
   category: String,
   score: Number,
   comment: String,
-  countri: String,
+  country: String,
   city: String,
   images: [String],
   user: [{

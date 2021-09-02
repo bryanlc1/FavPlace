@@ -3,10 +3,6 @@ const passport = require('passport');
 const userController = require('../controllers/userControllers');
 
 const userRouter = Router();
-userRouter
-  .route('/')
-  .get(userController.getAll)
-  .post(userController.createOne);
 
 userRouter
   .route('/:userId')
@@ -15,5 +11,9 @@ userRouter
   .put(userController.updateOneById)
   .delete(userController.deleteById)
   .patch(userController.addOneElementbyId);
+
+userRouter
+  .route('/public/:userId')
+  .get(userController.getOneForProfile);
 
 module.exports = userRouter;
