@@ -1,4 +1,5 @@
 const { Schema, model } = require('mongoose');
+const isValidPassword = require('../func/isValidPassword');
 
 const userSchema = Schema({
   name: String,
@@ -12,7 +13,5 @@ const userSchema = Schema({
   }]
 });
 
-userSchema.methods.isValidPassword = function isValidPassword(password) {
-  return password === this.password;
-};
+userSchema.methods.isValidPassword = isValidPassword;
 module.exports = model('User', userSchema);

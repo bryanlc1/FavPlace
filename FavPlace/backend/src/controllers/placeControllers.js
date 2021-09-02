@@ -22,7 +22,8 @@ async function createOne({ body }, res) {
 
 async function getOneById({ params: { placeId } }, res) {
   try {
-    const findPlace = await Place.findById(placeId);
+    const findPlace = await Place.findById(placeId)
+      .populate({ path: 'user', select: ['name', 'image'] });
     res.send(findPlace);
   } catch (error) {
     res.send(error);
