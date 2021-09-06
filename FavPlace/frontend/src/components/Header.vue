@@ -1,8 +1,7 @@
 <template>
   <div class="header">
-    <router-link to="/"> <h1>This is header</h1></router-link>
-
-    <router-link to="/profile">Profile</router-link>
+    <router-link to="/" class="link"> <h1>FavPlace</h1></router-link>
+    <router-link to="/profile">User</router-link>
   </div>
 </template>
 
@@ -15,6 +14,8 @@ export default defineComponent({
 </script>
 
 <style scoped>
+@import "../styles/global.scss";
+
 .header {
   background-color: #066f68;
   display: flex;
