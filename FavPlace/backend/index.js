@@ -5,12 +5,14 @@ require('./src/config/localStrategy');
 
 const debug = require('debug')('favPlace');
 const morgan = require('morgan');
+const cors = require('cors');
 
 const server = express();
 const port = process.env.PORT || 5000;
 
 server.use(morgan('dev'));
 server.use(express.json());
+server.use(cors());
 
 require('./src/config/passportConfig')(server);
 const userRoutes = require('./src/routes/userRoute');
