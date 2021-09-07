@@ -18,7 +18,7 @@ const routes: Array<RouteRecordRaw> = [
     component:Profile,
   },
   {
-    path:'/detail',
+    path:'/detail/:placeId',
     name:'Detail',
     component:Detail,
   },

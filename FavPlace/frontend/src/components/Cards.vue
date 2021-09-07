@@ -1,6 +1,6 @@
 <template>
   <section class="cards">
-    <arcticle class="card">
+    <arcticle class="card" v-for="place in filterPlaces" :key="place.name">
       <div class="card__header">
         <div class="avatar">
           <img
@@ -9,54 +9,19 @@
           />
         </div>
         <div>
-          <p>Bryan</p>
-          <p>Spain,Barcelona</p>
+          <p>{{ place.user[0].name }}</p>
+          <p>{{ place.country }}, {{ place.city }}</p>
         </div>
       </div>
       <div class="card__main">
-        <router-link to="/detail">
-          <img
-            src="https://www.lavanguardia.com/files/content_image_mobile_filter/uploads/2018/02/07/5fa4371084e80.jpeg"
-            alt=""
-          />
+        <router-link :to="'/detail/' + place._id">
+          <img class="card__image" :src="place.images[0]" alt="" />
         </router-link>
       </div>
       <div class="header__footer">
-        <span class="title">Rio besos</span>
+        <span class="title">{{ place.namePlace }}</span>
         <span>
-          Me a encantado pasear por este hermoso rio ,<br />
-          puedes hacer deporte o simplemente acostarte en el cesped <br />
-          a relajarte. Hay varias entradas a lo largo del rio.
-        </span>
-      </div>
-    </arcticle>
-    <arcticle class="card">
-      <div class="card__header">
-        <div class="avatar">
-          <img
-            class="avatar__image"
-            src="https://cdn.icon-icons.com/icons2/1736/PNG/512/4043260-avatar-male-man-portrait_113269.png"
-          />
-        </div>
-        <div>
-          <p>Bryan</p>
-          <p>Spain,Barcelona</p>
-        </div>
-      </div>
-      <div class="card__main">
-        <router-link to="/detail">
-          <img
-            src="https://www.lavanguardia.com/files/content_image_mobile_filter/uploads/2018/02/07/5fa4371084e80.jpeg"
-            alt=""
-          />
-        </router-link>
-      </div>
-      <div class="header__footer">
-        <span class="title">Rio besos</span>
-        <span>
-          Me a encantado pasear por este hermoso rio ,<br />
-          puedes hacer deporte o simplemente acostarte en el cesped <br />
-          a relajarte. Hay varias entradas a lo largo del rio.
+          {{ place.comment }}
         </span>
       </div>
     </arcticle>
@@ -66,8 +31,18 @@
 <script>
 import { defineComponent } from "vue";
 
+import { mapState, mapActions, mapGetters } from "vuex";
+
 export default defineComponent({
   name: "Cards",
+  computed: {
+    ...mapState(["places"]),
+
+    ...mapGetters(["filterPlaces"]),
+  },
+  methods: {
+    ...mapActions(["fetchPlaces"]),
+  },
 });
 </script>
 
@@ -88,10 +63,15 @@ export default defineComponent({
   background-color: rgba(var(--b3f, 250, 250, 250), 1);
   padding: 1em;
   box-shadow: 0 1px 3px rgb(255 0 120);
+  width: 50%;
 }
 
 .card__header {
   display: flex;
+}
+
+.card__image {
+  width: 100%;
 }
 
 .avatar {
