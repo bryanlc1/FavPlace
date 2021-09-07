@@ -11,7 +11,7 @@ function register(req, res) {
 }
 
 function login({ user }, res) {
-  const data = { password: user.password, email: user.email };
+  const data = { _id: user._id, email: user.email };
 
   try {
     const token = jwt.sign(
@@ -26,6 +26,7 @@ function login({ user }, res) {
     );
     refreshTokens.push(refreshToken);
     return res.json({
+      user,
       token,
       refreshToken
     });
