@@ -4,38 +4,35 @@ import { createStore } from 'vuex';
 export default createStore({
   state: {
     user:[],
+    publicProfile:{},
     places:[],
     token:'',
     islogged:false,
     filterCity:'',
-    filterCategory:''
+    filterCategory:'',
   },
 
   getters:{
     
-      filterPlaces(state){
-        if(state.filterCity.length>0 && state.filterCategory.length >0 ){
+     filterPlaces(state){
+        if(state.filterCity.length && state.filterCategory.length){
           
-          const currentPLaces= state.places.filter(({city})=>city===state.filterCity)
-
-          const newPLaces = currentPLaces.filter(({category})=>{
-            const searchPlace = [category];
-            return searchPlace.toString().toLowerCase().includes(state.filterCategory)
-          }) 
-           return newPLaces
+          return state.places.filter(({city,category}:any)=>{
+            return city.toLowerCase().includes(state.filterCity) && category.toLowerCase() === state.filterCategory.toLowerCase();
+          })       
         }
 
-        if(state.filterCity.length>0 && state.filterCategory.length ===0){
-          return state.places.filter(({city })=>city===state.filterCity)
+        if(state.filterCity.length && !state.filterCategory.length ){
+          return state.places.filter(({city}: any)=> city.includes(state.filterCity))
         }
 
         
-        if(state.filterCity.length===0 && state.filterCategory.length >0){
+        if(!state.filterCity.length && state.filterCategory.length ){
           return state.places.filter(({category })=>category===state.filterCategory)
         }
        
+        return state.places;
       }
-    
   },
 
   mutations: {
@@ -54,6 +51,9 @@ export default createStore({
 
     fetchCategory(state,payload){
       state.filterCategory=payload
+    },
+    loadPublic(state,payload){
+      state.publicProfile=payload
     }
 
 
@@ -74,6 +74,11 @@ export default createStore({
     async registerUser({dispatch},payload){
        await axios.post('http://localhost:5005/auth/register',payload)
       dispatch('loadUser',payload)
+    },
+    async fetchPublic({commit},id){
+      const {data}=await axios.get(`http://localhost:5005/users/public/${id}`)
+      console.log('hola',data)
+      commit('loadPublic',data)
     }
 
   },

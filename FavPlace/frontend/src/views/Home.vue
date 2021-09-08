@@ -23,15 +23,14 @@
         <span class="focus"></span>
       </div>
     </section>
-    <Cards :city="city" :category="category" />
+    <Cards />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
 import { mapMutations, mapState, mapActions } from "vuex";
-import Cards from "@/components/Cards.vue";
-
+import Cards from "../components/Cards.vue";
 export default defineComponent({
   name: "Home",
   components: {
