@@ -1,29 +1,7 @@
 <template>
   <section class="cards">
-    <arcticle class="card" v-for="place in filterPlaces" :key="place.name">
-      <div class="card__header">
-        <div class="avatar">
-          <img
-            class="avatar__image"
-            src="https://cdn.icon-icons.com/icons2/1736/PNG/512/4043260-avatar-male-man-portrait_113269.png"
-          />
-        </div>
-        <div>
-          <p>{{ place.user[0].name }}</p>
-          <p>{{ place.country }}, {{ place.city }}</p>
-        </div>
-      </div>
-      <div class="card__main">
-        <router-link :to="'/detail/' + place._id">
-          <img class="card__image" :src="place.images[0]" alt="" />
-        </router-link>
-      </div>
-      <div class="header__footer">
-        <span class="title">{{ place.namePlace }}</span>
-        <span>
-          {{ place.comment }}
-        </span>
-      </div>
+    <arcticle class="card" v-for="place in filterPlaces" :key="place">
+      <p>hola{{ place._id }}</p>
     </arcticle>
   </section>
 </template>
