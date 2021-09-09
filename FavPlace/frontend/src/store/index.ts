@@ -7,6 +7,7 @@ export default createStore({
     publicProfile:{},
     places:[],
     token:'',
+    refreshToken:'',
     islogged:false,
     filterCity:'',
     filterCategory:'',
@@ -39,6 +40,7 @@ export default createStore({
     updateUser(state,payload){
       state.user=payload.user
       state.token=payload.token;
+      state.refreshToken=payload.refreshToken;
       state.islogged=true
     },
     loadPlaces(state,payload){
@@ -67,18 +69,33 @@ export default createStore({
     },
     async loadUser({commit},payload){
       const {data}= await axios.post('http://localhost:5005/auth/login',payload)
-      console.log(data);
+      localStorage.setItem("userData", JSON.stringify({email: data.user.email, password: data.user.password}));
+      console.log('logiiinnn',data)
       commit('updateUser', data)
     },
 
-    async registerUser({dispatch},payload){
-       await axios.post('http://localhost:5005/auth/register',payload)
-      dispatch('loadUser',payload)
+     registerUser({dispatch},payload){
+        axios.post('http://localhost:5005/auth/register',payload)
+       console.log('register',payload)
+      dispatch('loadUser',{email: payload.email, password: payload.password})
+    },
+
+    fetchUserFromLocalStorage({dispatch}) {
+      const localStorageUser = JSON.parse(localStorage.getItem("userData") || "")
+      dispatch("loadUser", {email: localStorageUser.email, password: localStorageUser.password});
     },
     async fetchPublic({commit},id){
       const {data}=await axios.get(`http://localhost:5005/users/public/${id}`)
-      console.log('hola',data)
       commit('loadPublic',data)
+    },
+
+   addPlace({state},payload){
+    const authorization = {
+      headers: {
+        Authorization: `Bearer ${state.token}`,
+      },
+    };
+    axios.post("http://localhost:5005/places/create",authorization,payload)
     }
 
   },

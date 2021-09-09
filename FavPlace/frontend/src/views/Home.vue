@@ -16,8 +16,8 @@
         >
           <option value="" selected disabled hidden>Categoria</option>
           <option value="parques">Parques</option>
-          <option value="restaurantes">Restaurantes</option>
-          <option value="centros comerciales">Centros comerciales</option>
+          <option value="restaurante">Restaurantes</option>
+          <option value="cc">Centros comerciales</option>
           <option value="">Todo</option>
         </select>
         <span class="focus"></span>

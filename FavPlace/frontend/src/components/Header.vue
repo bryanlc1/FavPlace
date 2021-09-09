@@ -7,9 +7,16 @@
 
 <script>
 import { defineComponent } from "vue";
-
+import { mapActions } from "vuex";
 export default defineComponent({
   name: "Header",
+
+  methods: {
+    ...mapActions(["fetchUserFromLocalStorage"]),
+  },
+  mounted() {
+    this.fetchUserFromLocalStorage();
+  },
 });
 </script>
 
