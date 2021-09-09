@@ -72,7 +72,8 @@ export default createStore({
     },
 
     async registerUser({dispatch},payload){
-       await axios.post('http://localhost:5005/auth/register',payload)
+
+       await axios.post('http://localhost:5005/auth/register',payload,)
       dispatch('loadUser',payload)
     }
 
