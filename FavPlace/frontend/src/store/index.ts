@@ -4,44 +4,43 @@ import { createStore } from 'vuex';
 export default createStore({
   state: {
     user:[],
+    publicProfile:{},
     places:[],
     token:'',
+    refreshToken:'',
     islogged:false,
     filterCity:'',
-    filterCategory:''
+    filterCategory:'',
   },
 
   getters:{
     
-      filterPlaces(state){
-        if(state.filterCity.length>0 && state.filterCategory.length >0 ){
+     filterPlaces(state){
+        if(state.filterCity.length && state.filterCategory.length){
           
-          const currentPLaces= state.places.filter(({city})=>city===state.filterCity)
-
-          const newPLaces = currentPLaces.filter(({category})=>{
-            const searchPlace = [category];
-            return searchPlace.toString().toLowerCase().includes(state.filterCategory)
-          }) 
-           return newPLaces
+          return state.places.filter(({city,category}:any)=>{
+            return city.toLowerCase().includes(state.filterCity) && category.toLowerCase() === state.filterCategory.toLowerCase();
+          })       
         }
 
-        if(state.filterCity.length>0 && state.filterCategory.length ===0){
-          return state.places.filter(({city })=>city===state.filterCity)
+        if(state.filterCity.length && !state.filterCategory.length ){
+          return state.places.filter(({city}: any)=> city.includes(state.filterCity))
         }
 
         
-        if(state.filterCity.length===0 && state.filterCategory.length >0){
+        if(!state.filterCity.length && state.filterCategory.length ){
           return state.places.filter(({category })=>category===state.filterCategory)
         }
        
+        return state.places;
       }
-    
   },
 
   mutations: {
     updateUser(state,payload){
       state.user=payload.user
       state.token=payload.token;
+      state.refreshToken=payload.refreshToken;
       state.islogged=true
     },
     loadPlaces(state,payload){
@@ -54,7 +53,18 @@ export default createStore({
 
     fetchCategory(state,payload){
       state.filterCategory=payload
-    }
+    },
+    loadPublic(state,payload){
+      state.publicProfile=payload
+    },
+    deleteDataFromLocalStorage(state) {
+      localStorage.setItem("userData", JSON.stringify(""));
+      const logedOutUser = {token: "", refreshToken: ""};
+      state.user=[]
+      state.islogged=false;
+      state.token=logedOutUser.token
+      state.refreshToken=logedOutUser.refreshToken
+  },
 
 
 
@@ -67,14 +77,36 @@ export default createStore({
     },
     async loadUser({commit},payload){
       const {data}= await axios.post('http://localhost:5005/auth/login',payload)
-      console.log(data);
+      localStorage.setItem("userData", JSON.stringify({email: data.user.email, password: data.user.password}));
+      console.log('logiiinnn',data)
       commit('updateUser', data)
     },
 
-    async registerUser({dispatch},payload){
 
-       await axios.post('http://localhost:5005/auth/register',payload,)
-      dispatch('loadUser',payload)
+     registerUser({dispatch},payload){
+        axios.post('http://localhost:5005/auth/register',payload)
+       console.log('register',payload)
+      dispatch('loadUser',{email: payload.email, password: payload.password})
+    },
+
+    fetchUserFromLocalStorage({dispatch}) {
+      const localStorageUser = JSON.parse(localStorage.getItem("userData") || "")
+      dispatch("loadUser", {email: localStorageUser.email, password: localStorageUser.password});
+    },
+    async fetchPublic({commit},id){
+      const {data}=await axios.get(`http://localhost:5005/users/public/${id}`)
+      commit('loadPublic',data)
+    },
+    
+   addPlace({state},payload){
+    const authorization = {
+      headers: {
+        Authorization: `Bearer ${state.token}`,
+      },
+    };
+    axios.post("http://localhost:5005/places/create",authorization,payload)
+    alert("has añadido");
+
     }
 
   },

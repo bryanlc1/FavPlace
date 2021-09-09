@@ -16,22 +16,21 @@
         >
           <option value="" selected disabled hidden>Categoria</option>
           <option value="parques">Parques</option>
-          <option value="restaurantes">Restaurantes</option>
-          <option value="centros comerciales">Centros comerciales</option>
+          <option value="restaurante">Restaurantes</option>
+          <option value="cc">Centros comerciales</option>
           <option value="">Todo</option>
         </select>
         <span class="focus"></span>
       </div>
     </section>
-    <Cards :city="city" :category="category" />
+    <Cards />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
 import { mapMutations, mapState, mapActions } from "vuex";
-import Cards from "@/components/Cards.vue";
-
+import Cards from "../components/Cards.vue";
 export default defineComponent({
   name: "Home",
   components: {

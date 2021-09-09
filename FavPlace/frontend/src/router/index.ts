@@ -5,6 +5,7 @@ import Detail from '../views/Detail.vue'
 import AddForm from '../views/AddForm.vue'
 import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
+import Public from '../views/Public.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -18,7 +19,12 @@ const routes: Array<RouteRecordRaw> = [
     component:Profile,
   },
   {
-    path:'/detail/:placeId',
+    path:'/public/:publicId',
+    name:'Public',
+    component:Public,
+  },
+  {
+    path:'/detail',
     name:'Detail',
     component:Detail,
   },

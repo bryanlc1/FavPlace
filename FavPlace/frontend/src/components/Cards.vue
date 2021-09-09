@@ -1,12 +1,14 @@
 <template>
   <section class="cards">
-    <arcticle class="card" v-for="place in filterPlaces" :key="place.name">
+    <arcticle class="card" v-for="place in filterPlaces" :key="place">
       <div class="card__header">
         <div class="avatar">
-          <img
-            class="avatar__image"
-            src="https://cdn.icon-icons.com/icons2/1736/PNG/512/4043260-avatar-male-man-portrait_113269.png"
-          />
+          <router-link :to="'/public/' + place.user[0]._id">
+            <img
+              class="avatar__image"
+              src="https://cdn.icon-icons.com/icons2/1736/PNG/512/4043260-avatar-male-man-portrait_113269.png"
+            />
+          </router-link>
         </div>
         <div>
           <p>{{ place.user[0].name }}</p>
@@ -14,7 +16,7 @@
         </div>
       </div>
       <div class="card__main">
-        <router-link :to="'/detail/' + place._id">
+        <router-link to="/detail">
           <img class="card__image" :src="place.images[0]" alt="" />
         </router-link>
       </div>
