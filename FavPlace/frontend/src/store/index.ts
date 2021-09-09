@@ -82,6 +82,7 @@ export default createStore({
       commit('updateUser', data)
     },
 
+
      registerUser({dispatch},payload){
         axios.post('http://localhost:5005/auth/register',payload)
        console.log('register',payload)
@@ -105,6 +106,7 @@ export default createStore({
     };
     axios.post("http://localhost:5005/places/create",authorization,payload)
     alert("has añadido");
+
     }
 
   },
