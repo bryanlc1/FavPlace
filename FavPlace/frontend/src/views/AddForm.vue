@@ -55,7 +55,6 @@ export default defineComponent({
 
     Add() {
       this.addPlace(this.dataPLace);
-      alert("has añadido");
     },
   },
 

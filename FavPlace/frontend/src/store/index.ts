@@ -56,7 +56,15 @@ export default createStore({
     },
     loadPublic(state,payload){
       state.publicProfile=payload
-    }
+    },
+    deleteDataFromLocalStorage(state) {
+      localStorage.setItem("userData", JSON.stringify(""));
+      const logedOutUser = {token: "", refreshToken: ""};
+      state.user=[]
+      state.islogged=false;
+      state.token=logedOutUser.token
+      state.refreshToken=logedOutUser.refreshToken
+  },
 
 
 
@@ -88,7 +96,7 @@ export default createStore({
       const {data}=await axios.get(`http://localhost:5005/users/public/${id}`)
       commit('loadPublic',data)
     },
-
+    
    addPlace({state},payload){
     const authorization = {
       headers: {
@@ -96,6 +104,7 @@ export default createStore({
       },
     };
     axios.post("http://localhost:5005/places/create",authorization,payload)
+    alert("has añadido");
     }
 
   },
