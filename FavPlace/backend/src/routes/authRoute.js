@@ -25,4 +25,8 @@ authRoute.post(
 authRoute.post(
   '/logout', authController.logout
 );
+
+authRoute.post(
+  '/refreshToken', authController.thisrefreshToken
+);
 module.exports = authRoute;
