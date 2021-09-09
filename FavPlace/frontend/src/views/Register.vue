@@ -47,19 +47,15 @@ export default defineComponent({
     ...mapActions(["registerUser"]),
 
     register() {
-      try {
-        const userData = {
-          name: this.name,
-          lastName: this.lastName,
-          email: this.email,
-          password: this.password,
-          error: false,
-        };
-        this.registerUser(userData);
-        this.$router.push("/");
-      } catch (error) {
-        console.log(error);
-      }
+      const userData = {
+        name: this.name,
+        lastName: this.lastName,
+        email: this.email,
+        password: this.password,
+        error: false,
+      };
+      this.registerUser(userData);
+      this.$router.push("/");
     },
   },
 

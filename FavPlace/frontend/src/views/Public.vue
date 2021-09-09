@@ -1,6 +1,8 @@
 <template>
   <div>
-    <h1>{{ publicProfile.name }}</h1>
+    <section>
+      <h1>{{ publicProfile.name }}</h1>
+    </section>
   </div>
 </template>
 
