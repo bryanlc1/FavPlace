@@ -1,7 +1,14 @@
 <template>
-  <div>
-    <section>
+  <div class="public">
+    <section class="user_info">
       <h1>{{ publicProfile.name }}</h1>
+    </section>
+    <section class="user__places">
+      <arcticle class="card" v-for="place in publicProfile.places" :key="place">
+        <router-link to="/detail">
+          <img class="card__image" :src="place.images[0]" alt="imagen" />
+        </router-link>
+      </arcticle>
     </section>
   </div>
 </template>
@@ -27,4 +34,15 @@ export default defineComponent({
 </script>
 
 <style>
+.public {
+  display: flex;
+  margin: 0px auto 30px;
+  max-width: 60vw;
+  flex-wrap: wrap;
+}
+
+.user__places {
+  display: flex;
+  flex-wrap: wrap;
+}
 </style>
