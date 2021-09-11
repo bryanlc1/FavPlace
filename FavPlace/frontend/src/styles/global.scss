@@ -1,18 +1,27 @@
 * {
+  margin: 0;
   text-decoration: none;
   box-sizing: border-box;
 }
 .title {
   font-weight: bold;
 }
-
-.boton {
-  font-family: "Helvetica", "Arial", sans-serif;
-  font-size: 1em;
-  padding: 1em;
-  margin-bottom: 60px;
-  appearance: none;
-  border-radius: 4px;
+body {
+  background-color: #fafafa;
+}
+button {
+  color: black;
+  padding: 10px;
+  border-radius: 30px;
+  background-color: #06586e;
   border: none;
-  box-shadow: 0 1px 3px;
+}
+
+button:hover {
+  background-color: #586a6e;
+}
+
+a {
+  font-size: 25px;
+  color: black;
 }

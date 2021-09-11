@@ -56,3 +56,9 @@ export default defineComponent({
   },
 });
 </script>
+
+<style >
+.form {
+  padding: 5em;
+}
+</style>

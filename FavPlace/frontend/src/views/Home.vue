@@ -58,27 +58,34 @@ export default defineComponent({
 </script>
 
 <style scoped>
+.home {
+  margin: 0 auto;
+  max-width: 980px;
+}
 .search {
   display: flex;
-  justify-content: space-between;
-  margin: 5em auto;
-  max-width: 935px;
-  align-items: center;
+  margin: 10vh auto;
+  justify-content: space-around;
 }
 .search__input {
+  color: white;
   width: 20vw;
   font-size: 20px;
   border: solid 1px;
-  background-color: lightgrey;
+  background-color: #82b6c2;
   border-radius: 10px;
   margin-right: 80;
+}
+
+.search__input:hover {
+  background-color: #79989f;
 }
 
 select {
   width: 20vw;
   font-size: 20px;
   border: solid 1px;
-  background-color: lightgrey;
+  background-color: #82b6c2;
   border-radius: 10px;
   margin-right: 80;
 }
