@@ -1,15 +1,22 @@
 <template>
   <nav class="header">
-    <div class="navegation">
-      <router-link to="/" class="link"> <h1>FavPlace</h1></router-link>
-      <div v-if="islogged" class="user_navegation">
+    <div v-if="islogged" class="header__navegation">
+      <div class="navegatio__logon">
+        <router-link to="/" class="link">
+          <h1>In FavPlace</h1>
+        </router-link>
+      </div>
+      <div class="navegation__user">
         <router-link to="/addform"><fa icon="plus" /></router-link>
         <router-link to="/profile"><fa icon="user" /></router-link>
         <button @click="handleLogout"><fa icon="power-off" /></button>
       </div>
-      <div v-else>
-        <router-link to="/login">login</router-link>
-      </div>
+    </div>
+    <div v-else class="header__navegation">
+      <router-link to="/" class="link">
+        <h3>Welcome to FavPlace</h3>
+      </router-link>
+      <router-link to="/login">login</router-link>
     </div>
   </nav>
 </template>
@@ -42,14 +49,13 @@ export default defineComponent({
 @import "../styles/global.scss";
 
 .header {
-  background: #79989F;
-  color: #f1f1f1;
+  background: #f1d1af;
   position: fixed;
   top: 0;
   width: 100%;
 }
 
-.navegation {
+.header__navegation {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -58,7 +64,7 @@ export default defineComponent({
   max-width: 980px;
 }
 
-.user_navegation {
+.navegation__user {
   display: flex;
   justify-content: space-between;
   width: 20vw;

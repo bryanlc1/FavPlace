@@ -1,25 +1,43 @@
 <template>
-  <div>
-    <form @submit.prevent="addForm">
-      <input
-        v-model="dataPlace.namePlace"
-        type="text"
-        placeholder="Nombre lugar"
-      />
-      <input v-model="dataPlace.country" type="text" placeholder="Pais" />
-      <input v-model="dataPlace.city" type="text" placeholder="Ciudad" />
-      <div class="select">
-        <select v-model="dataPlace.category" id="standard-select">
+  <div class="addPlace">
+    <form @submit.prevent="addForm" class="form">
+      <div>
+        <input
+          class="form__input input--add"
+          v-model="dataPlace.namePlace"
+          type="text"
+          placeholder="Nombre lugar"
+        />
+        <select
+          v-model="dataPlace.category"
+          class="select__option select--option-add"
+        >
           <option value="" selected disabled hidden>Categoria</option>
           <option value="parques">Parques</option>
           <option value="restaurante">Restaurantes</option>
           <option value="cc">Centros comerciales</option>
           <option value="otros">otros</option>
         </select>
+      </div>
+
+      <div>
+        <input
+          class="form__input input--add"
+          v-model="dataPlace.country"
+          type="text"
+          placeholder="Pais"
+        />
+        <input
+          class="form__input"
+          v-model="dataPlace.city"
+          type="text"
+          placeholder="Ciudad"
+        />
+
         <span class="focus"></span>
       </div>
-      <input v-model="dataPlace.score" type="text" placeholder="Valoracion" />
       <textarea
+        class="comment"
         name="description"
         v-model="dataPlace.comment"
         placeholder="Comentario"
@@ -27,16 +45,19 @@
       </textarea>
 
       <input
+        class="input--select-image"
         required
         type="file"
         accept="image/*"
         name="image"
         id="file"
         multiple
+        placeholder="Elegir foto"
         @change="updatePhoto"
       />
+      <label for="file">subir foto</label>
 
-      <input class="form-submit" type="submit" value="crear" />
+      <button class="form-submit" type="submit">Crear</button>
     </form>
   </div>
 </template>
@@ -72,6 +93,7 @@ export default defineComponent({
         userId: this.user._id,
       });
       console.log("holaaa", this.dataPlace);
+      this.$router.push("/profile");
     },
   },
 
@@ -92,4 +114,36 @@ export default defineComponent({
 </script>
 
 <style>
+.addPlace {
+  margin: 15vh auto;
+  max-width: 980px;
+}
+.input--add {
+  margin-right: 10px;
+}
+.select--option-add {
+  border-radius: 6px;
+  margin-bottom: 5vh;
+  background-color: white;
+  width: 11vw;
+}
+
+.comment {
+  border: 1px solid;
+  width: 22vw;
+  height: 10vh;
+}
+
+.input--select-image {
+  display: none;
+}
+
+.input--select-image + label {
+  color: #683000;
+  padding: 10px;
+  border-radius: 30px;
+  background-color: #f1d1af;
+  border: none;
+  margin : 2vh 0 2vh 0
+  }
 </style>

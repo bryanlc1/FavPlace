@@ -84,15 +84,18 @@ export default createStore({
       commit('loadPlaces',data);
     },
     async loadUser({commit},payload){
+      
       const {data}= await axios.post('http://localhost:5005/auth/login',payload)
       localStorage.setItem("userData", JSON.stringify({email: data.user.email, password: data.user.password}));
+
       commit('updateUser', data)
     },
 
 
-     registerUser({dispatch},payload){
-        axios.post('http://localhost:5005/auth/register',payload)
-      dispatch('loadUser',{email: payload.email, password: payload.password})
+  async  registerUser({dispatch},payload){
+       const {data}= await axios.post('http://localhost:5005/auth/register',payload)
+       console.log('regiiiiiiiiister',data)
+      dispatch('loadUser',{email: data.user.email, password: data.user.password})
     },
 
     fetchUserFromLocalStorage({dispatch}) {

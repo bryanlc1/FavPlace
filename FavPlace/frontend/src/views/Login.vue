@@ -1,27 +1,31 @@
 <template>
-  <div>
+  <div class="login">
     <form v-on:submit.prevent="login" class="form">
-      <label class="form-label" for="#email">Email:</label>
       <input
         v-model.trim="email"
-        class="form-input"
+        class="form__input"
         type="email"
         id="email"
         required
         placeholder="Email"
       />
-      <label class="form-label" for="#password">Password:</label>
       <input
         v-model.trim="password"
-        class="form-input"
+        class="form__input"
         type="password"
         id="password"
         placeholder="Password"
       />
-      <input class="form-submit" type="submit" value="Login" />
+      <button class="form-submit" type="submit">Login</button>
     </form>
-
-    <button type="button">Register</button>
+    <button
+      class="form-register"
+      type="button"
+      value="Registrarse"
+      @click="this.$router.push('/register')"
+    >
+      Registrarse
+    </button>
   </div>
 </template>
 
@@ -38,6 +42,7 @@ export default defineComponent({
   name: "Login",
   methods: {
     ...mapActions(["loadUser"]),
+
     login() {
       let user = {
         email: this.email,
@@ -58,7 +63,17 @@ export default defineComponent({
 </script>
 
 <style >
-.form {
-  padding: 5em;
+.login {
+  display: flex;
+  margin: 15vh auto;
+  max-width: 980px;
+  flex-direction: column;
+  align-items: center;
+}
+.form-submit {
+  width: 5vw;
+}
+.form-register {
+  width: 100%;
 }
 </style>

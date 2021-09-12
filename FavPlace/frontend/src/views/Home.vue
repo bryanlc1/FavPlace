@@ -10,6 +10,7 @@
       />
       <div class="select">
         <select
+          class="select__option"
           v-model="category"
           id="standard-select"
           @change="fetchCategory(category)"
@@ -64,29 +65,19 @@ export default defineComponent({
 }
 .search {
   display: flex;
-  margin: 10vh auto;
+  margin: 15vh 0 10vh;
   justify-content: space-around;
 }
 .search__input {
-  color: white;
   width: 20vw;
   font-size: 20px;
   border: solid 1px;
-  background-color: #82b6c2;
+  background-color: #ce996c;
   border-radius: 10px;
-  margin-right: 80;
+  height: 5vh;
 }
 
 .search__input:hover {
-  background-color: #79989f;
-}
-
-select {
-  width: 20vw;
-  font-size: 20px;
-  border: solid 1px;
-  background-color: #82b6c2;
-  border-radius: 10px;
-  margin-right: 80;
+  background-color: #f1d1af;
 }
 </style>

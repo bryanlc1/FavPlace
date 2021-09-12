@@ -10,7 +10,7 @@
             />
           </router-link>
         </div>
-        <div>
+        <div class="avatar__data">
           <p>{{ place.user[0].name }}</p>
           <p>{{ place.country }}, {{ place.city }}</p>
         </div>
@@ -62,14 +62,14 @@ export default defineComponent({
   margin-bottom: 3em;
   display: flex;
   flex-direction: column;
-  background-color: rgba(var(--b3f, 250, 250, 250), 1);
   padding: 1em;
-  box-shadow: 0 1px 3px rgb(255 0 120);
+  box-shadow: 0 1px 3px rgb(130 77 59);
   width: 50%;
 }
 
 .card__header {
   display: flex;
+  margin-bottom: 10px;
 }
 
 .card__image {
@@ -80,12 +80,18 @@ export default defineComponent({
   border-radius: 50%;
   height: 64px;
   width: 64px;
+  margin-right: 10px;
 }
 
 .avatar__image {
   border-radius: 50%;
   height: 100%;
   width: 100%;
+}
+.avatar__data {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
 
 .header__footer {
