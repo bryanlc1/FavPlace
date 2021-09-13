@@ -2,7 +2,7 @@
   <nav class="header">
     <div v-if="islogged" class="header__navegation">
       <div class="navegatio__logon">
-        <router-link to="/" class="link">
+        <router-link to="/" class="link__logo">
           <h1>In FavPlace</h1>
         </router-link>
       </div>
@@ -68,5 +68,11 @@ export default defineComponent({
   display: flex;
   justify-content: space-between;
   width: 20vw;
+}
+
+.link__logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>

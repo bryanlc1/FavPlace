@@ -36,6 +36,22 @@
 
         <span class="focus"></span>
       </div>
+      <div>
+        <input
+          class="form__input input--add"
+          v-model="dataPlace.street"
+          type="text"
+          placeholder="Calle"
+        />
+        <input
+          class="form__input"
+          v-model="dataPlace.number"
+          type="text"
+          placeholder="Numero"
+        />
+
+        <span class="focus"></span>
+      </div>
       <textarea
         class="comment"
         name="description"
@@ -93,7 +109,7 @@ export default defineComponent({
         userId: this.user._id,
       });
       console.log("holaaa", this.dataPlace);
-      this.$router.push("/profile");
+      this.$router.push("/");
     },
   },
 
@@ -107,6 +123,8 @@ export default defineComponent({
         score: "",
         comment: "",
         images: "",
+        street: "",
+        number: "",
       },
     };
   },
@@ -125,7 +143,9 @@ export default defineComponent({
   border-radius: 6px;
   margin-bottom: 5vh;
   background-color: white;
-  width: 11vw;
+  min-width: 11vw;
+  min-height: 7vh;
+  max-width: 15vw;
 }
 
 .comment {
@@ -144,6 +164,6 @@ export default defineComponent({
   border-radius: 30px;
   background-color: #f1d1af;
   border: none;
-  margin : 2vh 0 2vh 0
-  }
+  margin: 2vh 0 2vh 0;
+}
 </style>

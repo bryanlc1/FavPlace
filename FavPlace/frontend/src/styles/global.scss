@@ -5,7 +5,9 @@
 }
 .title {
   font-weight: bold;
+  text-transform: capitalize;
 }
+
 body {
   background-color: #fafafa;
 }
@@ -36,7 +38,7 @@ button:hover {
 }
 .select__option {
   height: 5vh;
-  width: 20vw;
+  max-width: 20vw;
   font-size: 20px;
   border: solid 1px;
   background-color: #ce996c;

@@ -7,6 +7,8 @@ const placeSchema = Schema({
   comment: String,
   country: String,
   city: String,
+  street: String,
+  number: String,
   images: [String],
   user: [{
     type: Schema.Types.ObjectId,

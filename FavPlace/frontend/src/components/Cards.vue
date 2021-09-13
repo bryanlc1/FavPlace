@@ -4,14 +4,11 @@
       <div class="card__header">
         <div class="avatar">
           <router-link :to="'/public/' + place.user[0]._id">
-            <img
-              class="avatar__image"
-              src="https://cdn.icon-icons.com/icons2/1736/PNG/512/4043260-avatar-male-man-portrait_113269.png"
-            />
+            <img class="avatar__image" :src="place.user[0].image" />
           </router-link>
         </div>
         <div class="avatar__data">
-          <p>{{ place.user[0].name }}</p>
+          <p class="title">{{ place.user[0].name }}</p>
           <p>{{ place.country }}, {{ place.city }}</p>
         </div>
       </div>
@@ -25,6 +22,14 @@
         <span>
           {{ place.comment }}
         </span>
+      </div>
+      <div>
+        <a
+          :href="'https://maps.google.com/?q=' + place.street + place.number"
+          target="_blank"
+        >
+          <fa icon="map-marker-alt" />
+        </a>
       </div>
     </arcticle>
   </section>
@@ -53,7 +58,7 @@ export default defineComponent({
 .cards {
   display: flex;
   margin: 0px auto;
-  flex-direction: column;
+  flex-direction: column-reverse;
   max-width: 935px;
   align-items: center;
 }
@@ -87,6 +92,7 @@ export default defineComponent({
   border-radius: 50%;
   height: 100%;
   width: 100%;
+  object-fit: cover;
 }
 .avatar__data {
   display: flex;

@@ -4,6 +4,7 @@ import { createStore } from 'vuex';
 export default createStore({
   state: {
     user:{},
+
     userId:'',
     publicProfile:{},
     places:[],
@@ -35,6 +36,8 @@ export default createStore({
        
         return state.places;
       }
+
+     
   },
 
   mutations: {
@@ -121,9 +124,16 @@ export default createStore({
           headers: { Authorization: `Bearer ${state.token}`} 
         })
       commit('updatePlaces',data)
-    }
-
+    },
+  deletePlace({state},placeId){
+      axios.delete(`http://localhost:5005/places/${placeId}`, {
+       headers: { Authorization: `Bearer ${state.token}`} 
+     })
+   },
+  
   },
+
+ 
   modules: {
   },
 });

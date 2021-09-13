@@ -23,7 +23,7 @@ async function createOne({ body }, res) {
 
 async function getOneById({ params: { userId } }, res) {
   try {
-    const findOne = await User.findById(userId);
+    const findOne = await User.findById(userId).populate('places');
     res.send(findOne);
   } catch (error) {
     res.status(500);
@@ -34,7 +34,9 @@ async function getOneById({ params: { userId } }, res) {
 async function getOneForProfile({ params: { userId } }, res) {
   try {
     const findOne = await User.findById(userId).populate('places');
-    res.send({ name: findOne.name, lasName: findOne.lastName, places: findOne.places });
+    res.send({
+      name: findOne.name, lastName: findOne.lastName, image: findOne.image, places: findOne.places
+    });
   } catch (error) {
     res.status(500);
     res.send(error);
