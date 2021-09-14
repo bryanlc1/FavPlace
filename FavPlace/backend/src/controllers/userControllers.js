@@ -1,3 +1,5 @@
+/* eslint-disable no-underscore-dangle */
+const debug = require('debug')('favPlace');
 const User = require('../models/user');
 
 async function getAll({ query }, res) {
@@ -89,6 +91,19 @@ async function deleteById({ params: { userId } }, res) {
   }
 }
 
+async function deleteItemById({ params: { userId }, body }, res) {
+  try {
+    const user = await User.findById(userId);
+    user.places = user.places.filter((place) => `${place}` !== body.places);
+
+    user.save();
+
+    res.send(user);
+  } catch (error) {
+    res.send(error);
+  }
+}
+
 module.exports = {
   getAll,
   createOne,
@@ -96,5 +111,6 @@ module.exports = {
   addOneElementbyId,
   deleteById,
   getOneById,
-  getOneForProfile
+  getOneForProfile,
+  deleteItemById
 };

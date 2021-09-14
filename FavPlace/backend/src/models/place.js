@@ -3,7 +3,7 @@ const { Schema, model } = require('mongoose');
 const placeSchema = Schema({
   namePlace: String,
   category: String,
-  score: Number,
+  score: String,
   comment: String,
   country: String,
   city: String,
