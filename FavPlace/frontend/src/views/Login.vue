@@ -44,7 +44,7 @@ export default defineComponent({
     ...mapActions(["loadUser"]),
 
     login() {
-      let user = {
+      const user = {
         email: this.email,
         password: this.password,
       };

@@ -20,7 +20,7 @@
         :key="place.placeName"
       >
         <img class="place__image" :src="place.images[0]" alt="imagen" />
-        <button class="delete" @click="handleDeletePlace(place._id)">
+        <button class="delete" @click="handleDeletePlace(user._id, place._id)">
           <fa icon="trash-alt" />
         </button>
       </arcticle>
@@ -39,13 +39,17 @@ export default defineComponent({
   },
 
   methods: {
-    ...mapActions(["deletePlace"]),
+    ...mapActions(["deletePlace", "deletePlaceInUser"]),
 
-    handleDeletePlace(currentPlaceId) {
+    handleDeletePlace(currentuserId, currentPlaceId) {
       this.deletePlace(currentPlaceId);
-      this.$router.go();
+      this.deletePlaceInUser({ user: currentuserId, place: currentPlaceId });
     },
   },
+
+  mounted(){
+    this.user();
+  }
 });
 </script>
 <style>

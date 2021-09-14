@@ -4,6 +4,7 @@ import { createStore } from 'vuex';
 export default createStore({
   state: {
     user:{},
+    userPlaces:[],
     userId:'',
     publicProfile:{},
     places:[],
@@ -75,25 +76,23 @@ export default createStore({
   updatePlaces(state,payload){
     state.user=payload
   }
+
   },
+  
   actions: {
     async fetchPlaces({commit}){
       const {data}=await axios.get('http://localhost:5005/places')
-      console.log(data);
       commit('loadPlaces',data);
     },
     async loadUser({commit},payload){
-      
       const {data}= await axios.post('http://localhost:5005/auth/login',payload)
       localStorage.setItem("userData", JSON.stringify({email: data.user.email, password: data.user.password}));
-
       commit('updateUser', data)
     },
 
 
   async  registerUser({dispatch},payload){
        const {data}= await axios.post('http://localhost:5005/auth/register',payload)
-       console.log('regiiiiiiiiister',data)
       dispatch('loadUser',{email: data.user.email, password: data.user.password})
     },
 
@@ -112,7 +111,6 @@ export default createStore({
       headers: { Authorization: `Bearer ${state.token}`} 
     })
 
-     dispatch('fetchPlaces')
       dispatch('addPlaceInUser',data)
       console.log('indexdataa',data)
     },
@@ -121,13 +119,24 @@ export default createStore({
        const {data}= await axios.patch(`http://localhost:5005/users/${state.userId}`,{places:payload._id},{
           headers: { Authorization: `Bearer ${state.token}`} 
         })
+      commit('updatePlacesUser',data)
       commit('updatePlaces',data)
     },
+
   deletePlace({state},placeId){
       axios.delete(`http://localhost:5005/places/${placeId}`, {
        headers: { Authorization: `Bearer ${state.token}`} 
      })
    },
+
+   async deletePlaceInUser({state,commit},payload){
+    
+    const {data}= await axios.post(`http://localhost:5005/users/${payload.user}`,{places:payload.place},{
+       headers: { Authorization: `Bearer ${state.token}`} 
+     })
+  
+   commit('updatePlaces',data)
+ }
   
   },
 
