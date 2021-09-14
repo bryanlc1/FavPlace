@@ -38,12 +38,14 @@
       </div>
       <div>
         <input
+          required
           class="form__input input--add"
           v-model="dataPlace.street"
           type="text"
           placeholder="Calle"
         />
         <input
+          required
           class="form__input"
           v-model="dataPlace.number"
           type="text"
@@ -64,11 +66,9 @@
         class="input--select-image"
         required
         type="file"
-        accept="image/*"
+        accept=".png, .jpg, .jpeg"
         name="image"
         id="file"
-        multiple
-        placeholder="Elegir foto"
         @change="updatePhoto"
       />
       <label for="file">subir foto</label>
@@ -110,6 +110,7 @@ export default defineComponent({
       });
       console.log("holaaa", this.dataPlace);
       this.$router.push("/");
+      this.$router.go();
     },
   },
 

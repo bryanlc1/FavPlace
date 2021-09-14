@@ -25,7 +25,9 @@
       </div>
       <div>
         <a
-          :href="'https://maps.google.com/?q=' + place.street + place.number"
+          :href="
+            'https://maps.google.com/?q=' + place.street + '+' + place.number
+          "
           target="_blank"
         >
           <fa icon="map-marker-alt" />

@@ -43,7 +43,7 @@ export default defineComponent({
 
     handleDeletePlace(currentPlaceId) {
       this.deletePlace(currentPlaceId);
-      this.$forceUpdate();
+      this.$router.go();
     },
   },
 });

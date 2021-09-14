@@ -4,7 +4,6 @@ import { createStore } from 'vuex';
 export default createStore({
   state: {
     user:{},
-
     userId:'',
     publicProfile:{},
     places:[],
@@ -76,9 +75,6 @@ export default createStore({
   updatePlaces(state,payload){
     state.user=payload
   }
-
-
-
   },
   actions: {
     async fetchPlaces({commit}){
@@ -115,6 +111,8 @@ export default createStore({
     const {data}=await axios.post("http://localhost:5005/places/create",{...dataPlace, user:userId},{
       headers: { Authorization: `Bearer ${state.token}`} 
     })
+
+     dispatch('fetchPlaces')
       dispatch('addPlaceInUser',data)
       console.log('indexdataa',data)
     },
