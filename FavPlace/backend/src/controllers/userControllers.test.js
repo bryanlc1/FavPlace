@@ -89,6 +89,21 @@ describe('Given getOneById', () => {
   });
 });
 
+describe('Given getOneForProfile', () => {
+  describe('When is invoked', () => {
+    describe('And User.findById is reolved', () => {
+      test('Then res.send is called', async () => {
+        const req = { params: { userId: '612d45dd12f3538839f52070' } };
+        const res = { send: jest.fn() };
+
+        User.findById.mockRejectedValue();
+        await userConstroller.getOneForProfile(req, res);
+        expect(res.send).toHaveBeenCalled();
+      });
+    });
+  });
+});
+
 describe('Given updateOneById', () => {
   describe('When is invoked', () => {
     describe('And user.findByIdAndUpdate is resolved', () => {

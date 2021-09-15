@@ -7,7 +7,7 @@ describe('Given register ', () => {
         user: {}
       };
       const res = {
-        res: jest.fn()
+        send: jest.fn()
       };
 
       authControllers.register(req, res);
@@ -15,9 +15,4 @@ describe('Given register ', () => {
       expect(res.send).toHaveBeenCalled();
     });
   });
-});
-
-describe('Given login', () => {
-  describe('when is invoked');
-  describe('');
 });
