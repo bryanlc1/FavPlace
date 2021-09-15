@@ -1,6 +1,6 @@
 <template>
   <div class="register">
-    <form action class="form" v-on:submit.prevent="register">
+    <form action class="form" v-on:submit.prevent="register" data-test="register">
       <input
         v-model="name"
         class="form__input"

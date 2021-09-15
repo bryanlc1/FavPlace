@@ -79,9 +79,7 @@ describe('Given addForm conmponent',()=>{
 
     describe('And the form is submit',()=>{
         test('Then should submit call updatePhoto',()=>{
-            jest.spyOn(global, 'FileReader').mockImplementation(function () {
-                this.readAsDataURL = jest.fn();
-            });
+          
            const updatePhoto=jest.fn()
            
             const wrapper = mount(AddForm,  {
