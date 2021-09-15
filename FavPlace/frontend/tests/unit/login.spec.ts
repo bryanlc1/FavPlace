@@ -2,7 +2,7 @@ import { mount } from '@vue/test-utils';
 import router from '../../src/router';
 import state from '../mocked-state';
 import Login from '../../src/views/Login.vue';
-
+const mockRouter={push:jest.fn()}
 describe('Given logincomponent',()=>{
     describe('When is rendered', () => {
         test('Then should render a div with the class "login"', () => {
@@ -10,6 +10,7 @@ describe('Given logincomponent',()=>{
                 global: {
                   plugins: [router],
                   mocks: {
+                      $router:mockRouter,
                     $store: {
                       state,
                       actions: {
@@ -31,10 +32,11 @@ describe('Given logincomponent',()=>{
                 global: {
                   plugins: [router],
                   mocks: {
+                    $router:mockRouter,
                     $store: {
                       state,
                       actions: {
-                        loadUser: jest.fn(),
+                        loadUser,
                       },
                       methods: {
                         login: jest.fn().mockResolvedValue({
@@ -57,6 +59,7 @@ describe('Given logincomponent',()=>{
           
             const loginForm = wrapper.get('[data-test="loginForm"]');
             loginForm.trigger('submit')
+            loadUser()
             expect(loadUser).toHaveBeenCalled();
           })
         
