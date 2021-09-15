@@ -1,17 +1,24 @@
 <template>
-  <div class="header">
-    <router-link to="/" class="link"> <h1>FavPlace</h1></router-link>
-
-    <div v-if="islogged">
-      <router-link to="/profile">User</router-link>
-      <button @click="handleLogout">LogOut</button>
-      <router-link to="/addform">Add_Place</router-link>
+  <nav class="header">
+    <div v-if="islogged" class="header__navegation">
+      <div class="navegatio__logon">
+        <router-link to="/" class="link__logo">
+          <h1>FavPlace</h1>
+        </router-link>
+      </div>
+      <div class="navegation__user">
+        <router-link to="/addform"><fa icon="plus" /></router-link>
+        <router-link to="/profile"><fa icon="user" /></router-link>
+        <button @click="handleLogout"><fa icon="power-off" /></button>
+      </div>
     </div>
-
-    <div v-else>
+    <div v-else class="header__navegation">
+      <router-link to="/" class="link">
+        <h1>FavPlace</h1>
+      </router-link>
       <router-link to="/login">login</router-link>
     </div>
-  </div>
+  </nav>
 </template>
 
 <script>
@@ -42,10 +49,30 @@ export default defineComponent({
 @import "../styles/global.scss";
 
 .header {
-  background-color: #066f68;
+  background: #f1d1af;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.header__navegation {
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  padding: 1em;
+  align-items: center;
+  margin: 0px auto;
+  padding: 10px;
+  max-width: 980px;
+}
+
+.navegation__user {
+  display: flex;
+  justify-content: space-between;
+  width: 20vw;
+}
+
+.link__logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>

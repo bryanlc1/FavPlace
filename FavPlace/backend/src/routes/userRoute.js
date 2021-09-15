@@ -7,9 +7,8 @@ const userRouter = Router();
 userRouter
   .route('/:userId')
   .all(passport.authenticate('jwt', { session: false }))
-  .get(userController.getOneById)
   .put(userController.updateOneById)
-  .delete(userController.deleteById)
+  .post(userController.deleteItemById)
   .patch(userController.addOneElementbyId);
 
 userRouter

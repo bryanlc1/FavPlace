@@ -1,23 +1,23 @@
 <template>
-  <div>
+  <div class="register">
     <form action class="form" v-on:submit.prevent="register">
       <input
         v-model="name"
-        class="form-input"
+        class="form__input"
         type="text"
         required
         placeholder="Nombre"
       />
       <input
         v-model="lastName"
-        class="form-input"
+        class="form__input"
         type="text"
         required
         placeholder="Apellido"
       />
       <input
         v-model="email"
-        class="form-input"
+        class="form__input"
         type="email"
         id="email"
         required
@@ -25,13 +25,13 @@
       />
       <input
         v-model="password"
-        class="form-input"
+        class="form__input"
         type="password"
         id="password"
         required
         placeholder="Password"
       />
-      <input class="form-submit" type="submit" value="Sign Up" />
+      <button class="form-submit" type="submit">Registrarse</button>
     </form>
   </div>
 </template>
@@ -72,4 +72,11 @@ export default defineComponent({
 
 
 <style>
+.register {
+  display: flex;
+  margin: 15vh auto;
+  max-width: 980px;
+  flex-direction: column;
+  align-items: center;
+}
 </style>

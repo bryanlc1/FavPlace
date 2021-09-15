@@ -47,7 +47,7 @@ passport.use(
     },
     async (email, password, next) => {
       try {
-        const user = await User.findOne({ email });
+        const user = await User.findOne({ email }).populate('places');
 
         if (!user) {
           return next(null, false, { message: 'User not registred' });

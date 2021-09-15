@@ -4,14 +4,11 @@
       <div class="card__header">
         <div class="avatar">
           <router-link :to="'/public/' + place.user[0]._id">
-            <img
-              class="avatar__image"
-              src="https://cdn.icon-icons.com/icons2/1736/PNG/512/4043260-avatar-male-man-portrait_113269.png"
-            />
+            <img class="avatar__image" :src="place.user[0].image" />
           </router-link>
         </div>
-        <div>
-          <p>{{ place.user[0].name }}</p>
+        <div class="avatar__data">
+          <p class="title">{{ place.user[0].name }}</p>
           <p>{{ place.country }}, {{ place.city }}</p>
         </div>
       </div>
@@ -25,6 +22,16 @@
         <span>
           {{ place.comment }}
         </span>
+      </div>
+      <div>
+        <a
+          :href="
+            'https://maps.google.com/?q=' + place.street + '+' + place.number
+          "
+          target="_blank"
+        >
+          <fa icon="map-marker-alt" />
+        </a>
       </div>
     </arcticle>
   </section>
@@ -53,7 +60,7 @@ export default defineComponent({
 .cards {
   display: flex;
   margin: 0px auto;
-  flex-direction: column;
+  flex-direction: column-reverse;
   max-width: 935px;
   align-items: center;
 }
@@ -62,14 +69,14 @@ export default defineComponent({
   margin-bottom: 3em;
   display: flex;
   flex-direction: column;
-  background-color: rgba(var(--b3f, 250, 250, 250), 1);
   padding: 1em;
-  box-shadow: 0 1px 3px rgb(255 0 120);
+  box-shadow: 0 1px 3px rgb(130 77 59);
   width: 50%;
 }
 
 .card__header {
   display: flex;
+  margin-bottom: 10px;
 }
 
 .card__image {
@@ -80,12 +87,19 @@ export default defineComponent({
   border-radius: 50%;
   height: 64px;
   width: 64px;
+  margin-right: 10px;
 }
 
 .avatar__image {
   border-radius: 50%;
   height: 100%;
   width: 100%;
+  object-fit: cover;
+}
+.avatar__data {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
 
 .header__footer {
