@@ -1,5 +1,4 @@
 /* eslint-disable no-underscore-dangle */
-const debug = require('debug')('favPlace');
 const User = require('../models/user');
 
 async function getAll({ query }, res) {
@@ -72,7 +71,7 @@ async function addOneElementbyId({ params: { userId }, body }, res) {
         new: true,
         useFindAndModify: false
       }
-    );
+    ).populate('places');
 
     res.send(newUser);
   } catch (error) {

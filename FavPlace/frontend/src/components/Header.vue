@@ -13,10 +13,14 @@
       </div>
     </div>
     <div v-else class="header__navegation">
-      <router-link to="/" class="link">
-        <h1>FavPlace</h1>
-      </router-link>
-      <router-link to="/login">login</router-link>
+      <div class="navegatio__logon">
+        <router-link to="/" class="link">
+          <h1>FavPlace</h1>
+        </router-link>
+      </div>
+      <div>
+        <router-link to="/login">login</router-link>
+      </div>
     </div>
   </nav>
 </template>

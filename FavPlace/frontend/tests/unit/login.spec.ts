@@ -3,7 +3,7 @@ import router from '../../src/router';
 import state from '../mocked-state';
 import Login from '../../src/views/Login.vue';
 const mockRouter={push:jest.fn()}
-describe('Given logincomponent',()=>{
+describe('Given login component',()=>{
     describe('When is rendered', () => {
         test('Then should render a div with the class "login"', () => {
             const wrapper = mount(Login,  {
@@ -25,7 +25,7 @@ describe('Given logincomponent',()=>{
             expect(wrapper.html()).toContain('<div class="login">')
         })
 
-        test('Should render a Login form', () => {
+        test('should render a login form', () => {
             const loadUser = jest.fn()
           
             const wrapper = mount(Login,  {

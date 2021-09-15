@@ -112,13 +112,13 @@ export default createStore({
     })
 
       dispatch('addPlaceInUser',data)
-      console.log('indexdataa',data)
     },
 
   async addPlaceInUser({state,commit},payload){
        const {data}= await axios.patch(`http://localhost:5005/users/${state.userId}`,{places:payload._id},{
           headers: { Authorization: `Bearer ${state.token}`} 
         })
+        console.log('addplace in user',data)
       commit('updatePlacesUser',data)
       commit('updatePlaces',data)
     },

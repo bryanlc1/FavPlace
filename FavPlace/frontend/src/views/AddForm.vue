@@ -1,6 +1,6 @@
 <template>
   <div class="addPlace">
-    <form @submit.prevent="addForm" class="form">
+    <form @submit.prevent="addForm" class="form" data-test="addForm">
       <div>
         <input
           class="form__input input--add"
@@ -70,6 +70,7 @@
         name="image"
         id="file"
         @change="updatePhoto"
+        data-test="pushPhoto"
       />
       <label for="file">subir foto</label>
 
@@ -98,7 +99,6 @@ export default defineComponent({
       reader.onloadend = () => {
         rawImg = reader.result;
         this.dataPlace.images = rawImg;
-        console.log(this.images);
       };
       reader.readAsDataURL(file);
     },
@@ -108,7 +108,6 @@ export default defineComponent({
         dataPlace: this.dataPlace,
         userId: this.user._id,
       });
-      console.log("holaaa", this.dataPlace);
       this.$router.push("/");
     },
   },
