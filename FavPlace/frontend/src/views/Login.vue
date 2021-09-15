@@ -1,6 +1,6 @@
 <template>
   <div class="login">
-    <form v-on:submit.prevent="login" class="form">
+    <form v-on:submit.prevent="login" class="form" data-test="loginForm">
       <input
         v-model.trim="email"
         class="form__input"
@@ -33,11 +33,6 @@
 import { defineComponent } from "vue";
 import { mapActions } from "vuex";
 
-interface Data {
-  email: string;
-  password: string;
-}
-
 export default defineComponent({
   name: "Login",
   methods: {
@@ -53,7 +48,7 @@ export default defineComponent({
     },
   },
 
-  data(): Data {
+  data() {
     return {
       email: "",
       password: "",

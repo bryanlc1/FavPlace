@@ -110,7 +110,6 @@ export default defineComponent({
       });
       console.log("holaaa", this.dataPlace);
       this.$router.push("/");
-      this.$router.go();
     },
   },
 

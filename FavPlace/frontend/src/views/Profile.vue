@@ -46,10 +46,6 @@ export default defineComponent({
       this.deletePlaceInUser({ user: currentuserId, place: currentPlaceId });
     },
   },
-
-  mounted(){
-    this.user();
-  }
 });
 </script>
 <style>
