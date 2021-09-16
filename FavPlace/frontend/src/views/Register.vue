@@ -1,6 +1,11 @@
 <template>
   <div class="register">
-    <form action class="form" v-on:submit.prevent="register">
+    <form
+      action
+      class="form"
+      v-on:submit.prevent="register"
+      data-test="register"
+    >
       <input
         v-model="name"
         class="form__input"
@@ -31,7 +36,9 @@
         required
         placeholder="Password"
       />
-      <button class="form-submit" type="submit">Registrarse</button>
+      <button class="form-submit submit--size" type="submit">
+        Registrarse
+      </button>
     </form>
   </div>
 </template>
@@ -78,5 +85,9 @@ export default defineComponent({
   max-width: 980px;
   flex-direction: column;
   align-items: center;
+}
+
+.submit--size {
+  width: 100px;
 }
 </style>

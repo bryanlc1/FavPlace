@@ -17,9 +17,10 @@
         v-for="place in publicProfile.places"
         :key="place"
       >
-        <router-link to="/detail">
-          <img class="place__image" :src="place.images[0]" alt="imagen" />
-        </router-link>
+        <img class="place__image" :src="place.images[0]" alt="imagen" />
+        <div class="name__place">
+          {{ place.namePlace }}
+        </div>
       </arcticle>
     </section>
   </div>
@@ -64,10 +65,11 @@ export default defineComponent({
   display: flex;
   margin-top: 20px;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: start;
 }
 .card__public {
-  margin-bottom: 30px;
+  margin: 0px 20px 20px 0px;
+  position: relative;
 }
 
 .place__image {
@@ -87,5 +89,14 @@ export default defineComponent({
   height: 100%;
   width: 100%;
   object-fit: cover;
+}
+.name__place {
+  text-align: center;
+  width: 100%;
+  color: black;
+  position: absolute;
+  bottom: 4px;
+  z-index: 10;
+  background-color: rgb(241 209 175 / 54%);
 }
 </style>

@@ -5,7 +5,8 @@ import state from '../mocked-state'
 
 describe('Given a home component',()=>{
     describe('When is rendered',()=>{
-        test('Then should render a section with the class is "search"',()=>{
+        test('Then should render a div with the class "home"',()=>{
+           const filterPlaces=jest.fn()
             const wrapper = mount(Home,{
                 global:{
                     plugins:[router],
@@ -13,16 +14,28 @@ describe('Given a home component',()=>{
                         $store:{
                             state:{
                                 ...state,
-                                filterCity:'',
-                                filterCategory:''
+                                filterCity:'a',
+                                filterCategory:'parques'
+                            },
+                            getters:{
+                                filterPlaces
+                            },
+                            actions:{
+                                fetchPlaces:jest.fn()
                             },
                             commit:jest.fn(),
                             dispatch:jest.fn
-                        }
+                        },
+                        data() {
+                            return{
+                             city:'',
+                             category:''
+                            }
+                          }
                     }
                 }
             })
-            expect(wrapper.html()).toContain('<section class="search">')
+            expect(wrapper.html()).toContain('<div class="home">')
         })
     })
 })

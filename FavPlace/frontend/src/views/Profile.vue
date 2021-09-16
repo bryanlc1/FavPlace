@@ -23,6 +23,9 @@
         <button class="delete" @click="handleDeletePlace(user._id, place._id)">
           <fa icon="trash-alt" />
         </button>
+        <div class="name__place">
+          {{ place.namePlace }}
+        </div>
       </arcticle>
     </section>
   </div>
@@ -44,6 +47,7 @@ export default defineComponent({
     handleDeletePlace(currentuserId, currentPlaceId) {
       this.deletePlace(currentPlaceId);
       this.deletePlaceInUser({ user: currentuserId, place: currentPlaceId });
+      this.$router.go();
     },
   },
 });
@@ -105,6 +109,16 @@ export default defineComponent({
   right: 10px;
   z-index: 10;
   background-color: rgb(104 48 0 / 60%);
+}
+
+.name__place {
+  text-align: center;
+  width: 100%;
+  color: black;
+  position: absolute;
+  bottom: 4px;
+  z-index: 10;
+  background-color: rgb(241 209 175 / 54%);
 }
 </style>
 
