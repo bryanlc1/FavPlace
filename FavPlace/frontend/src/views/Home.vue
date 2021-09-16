@@ -6,7 +6,7 @@
         @input="fetchCity(city)"
         class="search__input"
         type="text"
-        placeholder="pais,ciudad..."
+        placeholder="ciudad..."
       />
       <div class="select">
         <select

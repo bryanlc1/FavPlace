@@ -26,7 +26,12 @@
       <div>
         <a
           :href="
-            'https://maps.google.com/?q=' + place.street + '+' + place.number
+            'https://maps.google.com/?q=' +
+            place.street +
+            '+' +
+            place.number +
+            '+' +
+            place.city
           "
           target="_blank"
         >

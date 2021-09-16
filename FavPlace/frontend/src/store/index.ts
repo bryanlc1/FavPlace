@@ -48,6 +48,7 @@ export default createStore({
       state.refreshToken=payload.refreshToken;
       state.islogged=true
     },
+
     loadPlaces(state,payload){
       state.places=payload;
     },
@@ -59,9 +60,11 @@ export default createStore({
     fetchCategory(state,payload){
       state.filterCategory=payload
     },
+
     loadPublic(state,payload){
       state.publicProfile=payload
     },
+
     deleteDataFromLocalStorage(state) {
       localStorage.setItem("userData", JSON.stringify(""));
       const logedOutUser = {token: "", refreshToken: ""};
@@ -73,6 +76,7 @@ export default createStore({
       state.token=logedOutUser.token
       state.refreshToken=logedOutUser.refreshToken
   },
+
   updatePlaces(state,payload){
     state.user=payload
   }
@@ -80,16 +84,17 @@ export default createStore({
   },
   
   actions: {
+
     async fetchPlaces({commit}){
       const {data}=await axios.get('http://localhost:5005/places')
       commit('loadPlaces',data);
     },
+
     async loadUser({commit},payload){
       const {data}= await axios.post('http://localhost:5005/auth/login',payload)
       localStorage.setItem("userData", JSON.stringify({email: data.user.email, password: data.user.password}));
       commit('updateUser', data)
     },
-
 
   async  registerUser({dispatch},payload){
        const {data}= await axios.post('http://localhost:5005/auth/register',payload)
@@ -100,6 +105,7 @@ export default createStore({
       const localStorageUser = JSON.parse(localStorage.getItem("userData") || "")
       dispatch("loadUser", {email: localStorageUser.email, password: localStorageUser.password});
     },
+
     async fetchPublic({commit},id){
       const {data}=await axios.get(`http://localhost:5005/users/public/${id}`)
       commit('loadPublic',data)
@@ -118,8 +124,6 @@ export default createStore({
        const {data}= await axios.patch(`http://localhost:5005/users/${state.userId}`,{places:payload._id},{
           headers: { Authorization: `Bearer ${state.token}`} 
         })
-        console.log('addplace in user',data)
-      commit('updatePlacesUser',data)
       commit('updatePlaces',data)
     },
 
@@ -130,17 +134,13 @@ export default createStore({
    },
 
    async deletePlaceInUser({state,commit},payload){
-    
     const {data}= await axios.post(`http://localhost:5005/users/${payload.user}`,{places:payload.place},{
        headers: { Authorization: `Bearer ${state.token}`} 
      })
-  
-   commit('updatePlaces',data)
- }
-  
+      commit('updatePlaces',data)
+    }
   },
 
- 
   modules: {
   },
 });

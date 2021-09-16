@@ -66,7 +66,7 @@
         class="input--select-image"
         required
         type="file"
-        accept=".png, .jpg, .jpeg"
+        accept="image/*"
         name="image"
         id="file"
         @change="updatePhoto"
