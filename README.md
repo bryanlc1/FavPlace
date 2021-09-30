@@ -1,1 +1,2 @@
-# Bryan_Final-Project-202107
+# Welcome to FavPlace 
+You can search for places in each city you visit and you can share your favorite places.
