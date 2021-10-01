@@ -1,7 +1,7 @@
 # Welcome to FavPlace 
 You can search for places in each city you visit and you can share your favorite places.
 
-#You can find in the app web
+# You can find in the app web
 <ul>
   <li>Unit and component testing</li>
   <li>Vue and Vuex to handle the local state</li>
