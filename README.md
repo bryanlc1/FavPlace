@@ -3,7 +3,7 @@ You can search for places in each city you visit and you can share your favorite
 
 #You can find in the app web
 <ul>
-  <li>Unit and component testing<li>
+  <li>Unit and component testing</li>
   <li>Vue and Vuex to handle the local state<li>
   <li>MongoDB<li>
   <li>Express server<li>
