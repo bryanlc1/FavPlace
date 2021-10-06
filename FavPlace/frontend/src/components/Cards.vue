@@ -12,11 +12,7 @@
           <p>{{ place.country }}, {{ place.city }}</p>
         </div>
       </div>
-      <div class="card__main">
-        <router-link to="/detail">
-          <img class="card__image" :src="place.images[0]" alt="" />
-        </router-link>
-      </div>
+      <Carousel :slides="place.images"></Carousel>
       <div class="header__footer">
         <span class="title">{{ place.namePlace }}</span>
         <span>
@@ -44,11 +40,12 @@
 
 <script>
 import { defineComponent } from "vue";
-
 import { mapState, mapActions, mapGetters } from "vuex";
+import Carousel from "../components/carousel/Carousel.vue";
 
 export default defineComponent({
   name: "Cards",
+  components: { Carousel },
   computed: {
     ...mapState(["places"]),
 
@@ -84,9 +81,6 @@ export default defineComponent({
   margin-bottom: 10px;
 }
 
-.card__image {
-  width: 100%;
-}
 
 .avatar {
   border-radius: 50%;
