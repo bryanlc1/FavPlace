@@ -64,12 +64,13 @@
 
       <input
         class="input--select-image"
+        multiple
         required
         type="file"
         accept="image/*"
         name="image"
         id="file"
-        @change="updatePhoto"
+        @change="updatePhoto($event.target.files)"
         data-test="pushPhoto"
       />
       <label for="file">subir foto</label>
@@ -92,18 +93,44 @@ export default defineComponent({
     ...mapActions(["addPlace"]),
 
     updatePhoto(files: any) {
-      const file = files.target.files[0];
-      const reader = new FileReader();
+      console.log("files", files);
+      // const file = files.target.files[0];
+      let rawImg: any[] = [];
+      for (let i = 0; i < files.length; i++) {
+        //const element = files[i];
+        const reader = new FileReader();
+
+        reader.onloadend = () => {
+          rawImg.push(reader.result);
+        };
+        reader.readAsDataURL(files[i]);
+      }
+      this.dataPlace.images = rawImg;
+      console.log("arrayimagenes", this.dataPlace.images);
+      /* const reader = new FileReader();
 
       let rawImg;
       reader.onloadend = () => {
         rawImg = reader.result;
         this.dataPlace.images = rawImg;
       };
-      reader.readAsDataURL(file);
+      reader.readAsDataURL(file); */
     },
-
-    addForm() {
+    /* updatePhoto(fieldName: string, file: string) {
+      //let newImage = file[0];
+      console.log("array Images  ", file);
+      let arrayimages = [];
+      if (file.length > 0) {
+        for (let i = 0; i < file.length; i++) {
+          console.log("entra em array");
+          let imageURL = URL.createObjectURL(file[i]);
+          arrayimages.push(imageURL);
+          console.log("imagen selecionada", this.dataPlace.images);
+        }
+      }
+      this.dataPlace.images = arrayimages;
+      console.log("array en back", this.dataPlace.images);
+    }*/ addForm() {
       this.addPlace({
         dataPlace: this.dataPlace,
         userId: this.user._id,
