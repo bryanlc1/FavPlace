@@ -104,9 +104,10 @@ export default defineComponent({
           rawImg.push(reader.result);
         };
         reader.readAsDataURL(files[i]);
+        console.log(rawImg);
       }
-      this.dataPlace.images = rawImg;
-      console.log("arrayimagenes", this.dataPlace.images);
+    this.dataPlace.images = rawImg;
+      console.log("arrayimagenes", this.dataPlace);
       /* const reader = new FileReader();
 
       let rawImg;
@@ -148,7 +149,7 @@ export default defineComponent({
         category: "",
         score: "",
         comment: "",
-        images: "",
+        images: [],
         street: "",
         number: "",
       },

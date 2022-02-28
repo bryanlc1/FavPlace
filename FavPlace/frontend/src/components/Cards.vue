@@ -3,6 +3,7 @@
     <arcticle class="card" v-for="place in filterPlaces" :key="place">
       <div class="card__header">
         <div class="avatar">
+         
           <router-link :to="'/public/' + place.user[0]._id">
             <img class="avatar__image" :src="place.user[0].image" />
           </router-link>
@@ -12,7 +13,7 @@
           <p>{{ place.country }}, {{ place.city }}</p>
         </div>
       </div>
-      <Carousel :slides="place.images"></Carousel>
+      <carousel :slides="place.images"></carousel>       
       <div class="header__footer">
         <span class="title">{{ place.namePlace }}</span>
         <span>
@@ -41,11 +42,11 @@
 <script>
 import { defineComponent } from "vue";
 import { mapState, mapActions, mapGetters } from "vuex";
-import Carousel from "../components/carousel/Carousel.vue";
+import Carousel from "./carousel/Carousel.vue";
 
 export default defineComponent({
   name: "Cards",
-  components: { Carousel },
+   components : {Carousel},
   computed: {
     ...mapState(["places"]),
 
@@ -106,4 +107,11 @@ export default defineComponent({
   flex-direction: column;
   padding: 5px 5px 5px 0px;
 }
+
+.carousel{
+  margin-top: 20px;
+  
+}
+
+
 </style>
