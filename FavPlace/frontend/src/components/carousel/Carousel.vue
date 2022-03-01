@@ -7,7 +7,7 @@
           :current-slide="currentSlide"
           :index="index">
          </carousel-item>
-         <carousel-controls @prev="prev" @next="next"></carousel-controls>
+         <carousel-controls @prev="prev" @next="next" ></carousel-controls>
       </div>
   </div>
 </template>
@@ -23,6 +23,7 @@ export default defineComponent({
     data: () =>( {
         currentSlide:0,
         
+        
     }),
 
     methods:{
@@ -33,7 +34,7 @@ export default defineComponent({
         prev(){
             console.log('prev hola',this.currentSlide)
          const index =
-        this.currentSlide > 0 ? this.currentSlide -1 : this.slides.length - 1;
+        this.currentSlide > 0 ? this.currentSlide -1 : 0;
       this.setCurrentSlide(index);
       console.log('prev adios',this.currentSlide)
 
@@ -42,7 +43,7 @@ export default defineComponent({
         next(){
             console.log('next hola',this.currentSlide)
             const index =
-        this.currentSlide < this.slides.length -1 ? this.currentSlide + 1 : 0 ;
+        this.currentSlide < this.slides.length -1 ? this.currentSlide + 1 :  this.currentSlide;
         this.setCurrentSlide(index);
         console.log('next adios',this.currentSlide)
         }
